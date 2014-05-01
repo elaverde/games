@@ -1,0 +1,256 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Game Carrusel Arrastrar</title>
+
+	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+		<script  src="Marquee/jquery.marquee.js" type="text/javascript"></script>
+		
+		
+       
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+        	<style type="text/css">
+			body {
+			 
+			 margin: 0 auto;
+			  font-family: 'Lato', sans-serif;
+			}
+			#contenedor {
+  width: 600px;
+  margin: 0 auto;
+    overflow:hidden;
+}
+		
+		
+
+			.marquee1,
+			.marquee2,
+			.marquee3 {
+			  width: 100%;
+			 }
+			.elements{
+				width:200px;
+				height:50px;
+				float:left;
+				
+				text-align:center;
+				color:#FFFFFF;  
+				
+			}
+			.elements strong{padding-left:-150px;}
+			.element{
+				margin-left:0px;
+				padding-left:60px;
+				font-size:12px;
+				font-weight:normal;
+				
+			}
+			.element:hover{
+				cursor:move;
+			
+			}
+			#Oxigeno{ background-color:#0066CC;}
+			#Calor{ background-color:#FF0033;}
+			#Combustible{ background-color:#CC3300;}
+		</style>
+    
+</head>
+
+<body>
+
+<div id="contenedor">
+<div class='marquee1'>
+<strong id="Calor2" class="element" >Calor</strong>
+<strong class="element" >Opción 2</strong>
+<strong class="element" >Opción 3</strong>
+<strong class="element" >Opción 4</strong>
+<strong class="element" >Opción 5</strong>
+</div>
+
+<br>
+<br>
+
+
+
+<div class='marquee2'>
+<strong class="element" >Opción 1</strong>
+<strong class="element" >Opción 2</strong>
+<strong id="Oxigeno2" class="element" >Oxigeno </strong>
+<strong class="element" >Opción 4</strong>
+<strong class="element" >Opción 5</strong>
+</div>
+
+<br>
+<br>
+
+
+<div class='marquee3'>
+<strong class="element" >Opción 1</strong>
+<strong class="element" >Opción 2</strong>
+<strong class="element" >Opción 3</strong>
+<strong id="Combustible2" class="element" >Combustible </strong>
+<strong class="element" >Opción 5</strong>
+</div>
+
+<br>
+<br>
+<h2>Tres Elementos para crear Fuego</h2>
+
+
+<div id="Calor" class="elements">
+
+<strong id="r1" style="display:none;">Calor</strong>
+
+</div>
+<div id="Oxigeno"  class="elements">
+
+<strong id="r2" style="display:none;">Oxigeno</strong>
+
+</div>
+<div id="Combustible"  class="elements">
+
+<strong id="r3" style="display:none;">Combustible</strong>
+
+</div>
+
+</div>
+
+</body>
+
+<script>
+$(function(){
+	
+
+	
+	
+	var $mwo = $('.marquee1');
+  $( ".element" ).draggable({ revert: true });
+  
+  
+  	$( "#Calor" ).droppable({
+      drop: function( event, ui ) { 
+     	 if ($(ui.draggable).attr("id")=='Calor2')
+		 {
+		
+		 var $mq = $('.marquee1');
+		 $mq.marquee('destroy');
+         $mq.html('<strong>Felicitaciones Haz Aprobado La Primera etapa</strong>')
+		 $mq.css("background-color","#006600");
+		 $mq.css("color","#FFF");
+		 $mq.css("text-align","center");
+		 $('#r1').css("display","block");		 
+		 $(ui.draggable).draggable( "option", "revert", "invalid" );
+		 }
+		 else
+		 {
+		 $(ui.draggable).draggable( "option", "revert", true );	 
+	     }
+		  
+      }
+    });
+	
+	  	$( "#Oxigeno" ).droppable({
+      drop: function( event, ui ) { 
+     	 if ($(ui.draggable).attr("id")=='Oxigeno2')
+		 {
+		
+		 var $mq = $('.marquee2');
+		 $mq.marquee('destroy');
+         $mq.html('<strong>Felicitaciones Haz Aprobado La Segunda etapa</strong>')
+		 $mq.css("background-color","#006600");
+		 $mq.css("color","#FFF");
+		 $mq.css("text-align","center");
+		 $('#r2').css("display","block");
+		 
+		 $(ui.draggable).draggable( "option", "revert", "invalid" );
+		 }
+		 else
+		 {
+		 $(ui.draggable).draggable( "option", "revert", true );	 
+	     }
+		  
+      }
+    });
+	
+		  $( "#Combustible" ).droppable({
+         drop: function( event, ui ) { 
+     	 if ($(ui.draggable).attr("id")=='Combustible2')
+		 {
+		
+		 var $mq = $('.marquee3');
+		 $mq.marquee('destroy');
+         $mq.html('<strong>Felicitaciones Haz Aprobado La Tercera etapa</strong>')
+		 $mq.css("background-color","#006600");
+		 $mq.css("color","#FFF");
+		 $mq.css("text-align","center");
+		 $('#r3').css("display","block");
+		 
+		 $(ui.draggable).draggable( "option", "revert", "invalid" );
+		 }
+		 else
+		 {
+		 $(ui.draggable).draggable( "option", "revert", true );	 
+	     }
+		  
+      }
+    });
+  
+	$('.marquee1').marquee({
+		//speed in milliseconds of the marquee
+		speed: 5000,
+		//gap in pixels between the tickers
+		gap: 50,
+		//gap in pixels between the tickers
+		delayBeforeStart: 0,
+		//'left' or 'right'
+		direction: 'left',
+		//true or false - should the marquee be duplicated to show an effect of continues flow
+		duplicated: false,
+		//on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
+		pauseOnHover: true
+	});
+	
+		$('.marquee2').marquee({
+		//speed in milliseconds of the marquee
+		speed: 5000,
+		//gap in pixels between the tickers
+		gap: 200,
+		//gap in pixels between the tickers
+		delayBeforeStart: 2000,
+		//'left' or 'right'
+		direction: 'right',
+		//true or false - should the marquee be duplicated to show an effect of continues flow
+		duplicated: false,
+		//on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
+		pauseOnHover: true
+	});
+	
+
+		$('.marquee3').marquee({
+		//speed in milliseconds of the marquee
+		speed: 5000,
+		//gap in pixels between the tickers
+		gap: 50,
+		//gap in pixels between the tickers
+		delayBeforeStart: 4000,
+		//'left' or 'right'
+		direction: 'left',
+		//true or false - should the marquee be duplicated to show an effect of continues flow
+		duplicated: false,
+		//on hover pause the marquee - using jQuery plugin https://github.com/tobia/Pause
+		pauseOnHover: true
+	});
+
+
+	//toggle
+	$('.toggle').hover(function(e){
+		$mwo.trigger('pause');
+	},function(){
+		$mwo.trigger('resume');
+	})
+
+});
+</script>
+</html>
